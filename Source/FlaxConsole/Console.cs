@@ -128,18 +128,10 @@ public abstract class Console : Script
             return new(0);
         });
 
-        //lua.Environment["logActors"] = new LuaFunction((context, buffer, ct) => {
-        //    Camera mainCamera = Camera.MainCamera;
-
-        //    int radius = context.GetArgument<int>(0);
-
-        //    if (Physics.OverlapSphere(mainCamera.Position, radius, out Collider[] results)) {
-        //        foreach (var r in results) {
-        //            Level.Fin
-        //        }
-        //    }
-
-        //    return new(0);
-        //});
+        lua.Environment["log"] = new LuaFunction((context, buffer, ct) => {
+            Log(context.GetArgument(0).ToString());
+            
+            return new(0);
+        });
     }
 }

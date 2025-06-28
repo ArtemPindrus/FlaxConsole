@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using FlaxEngine;
+using FlaxEngine.Utilities;
 using Lua;
 
 namespace FlaxConsole;
@@ -15,6 +17,8 @@ public class ConsoleObject : Script
     [ShowInEditor]
     public string? CustomName { get; private set; }
 
+    private HashSet<PropertyInfo> properties = new();
+
     public override void OnAwake() {
         Console c = PluginManager.GetPlugin<FlaxConsole>().Console;
 
@@ -22,48 +26,49 @@ public class ConsoleObject : Script
             Metatable = new()
         };
 
-        Add(Actor, actorTable);
+        AddMembers(Actor, actorTable);
 
         foreach (var script in Actor.Scripts) {
-            Add(script, actorTable);
+            var subTable = new LuaTable() {
+                Metatable = new()
+            };
+            actorTable[script.GetType().Name] = subTable;
+
+            AddMembers(script, subTable);
         }
         
         c.AddToEnvironment(!string.IsNullOrWhiteSpace(CustomName) ? CustomName : Actor.Name, actorTable);
     }
 
-    private void Add(object instance, LuaTable actorTable) {
+    private void AddMembers(object instance, LuaTable table) {
         var type = instance.GetType();
 
         if (type == typeof(ConsoleObject)) return;
 
-        var metaTable = actorTable.Metatable;
+        var metatable = table.Metatable;
 
-        Debug.Log(type.FullName);
-
-        var methods = type.GetMethods(System.Reflection.BindingFlags.Instance
-            | System.Reflection.BindingFlags.Public
-            | System.Reflection.BindingFlags.NonPublic).Where(x => x.GetParameters().Length == 0);
+        var methods = type.GetMethods(BindingFlags.Instance
+            | BindingFlags.Public
+            | BindingFlags.NonPublic).Where(x => x.GetParameters().Length == 0);
 
         foreach (var m in methods) {
-            actorTable[m.Name] = new LuaFunction((ctx, bf, ct) => {
+            table[m.Name] = new LuaFunction((ctx, bf, ct) => {
                 m.Invoke(instance, null);
 
                 return new(0);
             });
         }
 
-        var properties = type.GetProperties(System.Reflection.BindingFlags.Instance
-            | System.Reflection.BindingFlags.Public
-            | System.Reflection.BindingFlags.NonPublic);
+        var properties = type.GetProperties(BindingFlags.Instance
+            | BindingFlags.Public
+            | BindingFlags.NonPublic);
 
-        metaTable["__newindex"] = new LuaFunction((ctx, bf, ct) => {
+        this.properties.AddRange(properties);
+
+        metatable["__newindex"] = new LuaFunction((ctx, bf, ct) => {
             string key = ctx.GetArgument<string>(1);
 
-            Debug.Log(key);
-
             var propertyInfo = properties.FirstOrDefault(x => x.Name == key);
-
-            Debug.Log(propertyInfo != null);
 
             if (propertyInfo == null) return new(0);
 
@@ -72,6 +77,18 @@ public class ConsoleObject : Script
             propertyInfo.SetValue(instance, Convert.ChangeType(value, propertyInfo.PropertyType));
 
             return new(0);
+        });
+
+        metatable["__index"] = new LuaFunction((ctx, bf, ct) => {
+            string key = ctx.GetArgument<string>(1);
+
+            var propertyInfo = properties.FirstOrDefault(x => x.Name == key);
+
+            if (propertyInfo == null) return new(0);
+
+            bf.Span[0] = propertyInfo.GetValue(instance).ToString();
+
+            return new(1);
         });
     }
 }

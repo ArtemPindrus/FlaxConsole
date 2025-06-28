@@ -83,6 +83,7 @@ public class DefaultConsole : Console {
 
     protected override void Close() {
         child.IsActive = false;
+        textBox.Control.SetText("");
 
         Time.TimeScale = 1;
     }

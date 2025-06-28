@@ -1,5 +1,4 @@
-﻿
-using FlaxEngine;
+﻿using FlaxEngine;
 using FlaxEngine.GUI;
 
 namespace FlaxConsole;
@@ -82,8 +81,12 @@ public class DefaultConsole : Console {
     }
 
     protected override void Close() {
-        child.IsActive = false;
+        bool refocus = Engine.HasGameViewportFocus;
+
         textBox.Control.SetText("");
+        child.IsActive = false;
+
+        if (refocus) Engine.FocusGameViewport();
 
         Time.TimeScale = 1;
     }
@@ -93,6 +96,9 @@ public class DefaultConsole : Console {
         textBox.Control.Focus();
 
         Time.TimeScale = 0;
+
+        Screen.CursorLock = CursorLockMode.Clipped;
+        Screen.CursorVisible = true;
     }
 
     protected override void Log(string message) {

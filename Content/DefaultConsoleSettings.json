@@ -8,6 +8,18 @@
 		"Mask": 5
 	},
 	"ConsoleScene": "0bfb06f94fa0415330f11fb7906c87b4",
-	"HistoryCapacity": 20
+	"HistoryCapacity": 20,
+	"SwitchEvent": {
+		"Name": "SwitchConsole"
+	},
+	"ExecuteEvent": {
+		"Name": "ExecuteConsoleCommand"
+	},
+	"GetPreviousEvent": {
+		"Name": "PreviousCommand"
+	},
+	"GetNextEvent": {
+		"Name": "NextCommand"
+	}
 }
 }

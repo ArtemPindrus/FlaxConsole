@@ -9,19 +9,19 @@ namespace FlaxConsole;
 public class DefaultConsole : Console {
     [ShowInEditor]
     [Serialize]
-    private InputEvent SwitchEvent = new();
+    private InputEvent SwitchEvent;
 
     [ShowInEditor]
     [Serialize]
-    private InputEvent ExecuteEvent = new();
+    private InputEvent ExecuteEvent;
 
     [ShowInEditor]
     [Serialize]
-    private InputEvent GetPreviousEvent = new();
+    private InputEvent GetPreviousEvent;
 
     [ShowInEditor]
     [Serialize]
-    private InputEvent GetNextEvent = new();
+    private InputEvent GetNextEvent;
 
     [ShowInEditor]
     [Serialize]
@@ -35,6 +35,13 @@ public class DefaultConsole : Console {
 
     public override void OnStart() {
         child = Actor.GetChild(0);
+
+        var settings = PluginManager.GetPlugin<FlaxConsole>().Settings;
+
+        SwitchEvent = settings.SwitchEvent;
+        ExecuteEvent = settings.ExecuteEvent;
+        GetPreviousEvent = settings.GetPreviousEvent;
+        GetNextEvent = settings.GetNextEvent;
 
         base.OnStart();
     }

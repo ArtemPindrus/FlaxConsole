@@ -18,4 +18,10 @@ public class ConsoleEnvironmentSettings
     public LayersMask DestroyMask;
     public SceneReference ConsoleScene;
     public int HistoryCapacity;
+
+    [Header("Input")]
+    public InputEvent SwitchEvent = new();
+    public InputEvent ExecuteEvent = new();
+    public InputEvent GetPreviousEvent = new();
+    public InputEvent GetNextEvent = new();
 }

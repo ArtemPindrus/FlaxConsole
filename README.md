@@ -1,0 +1,1 @@
+This plugin uses [Lua-CSharp](https://github.com/nuskey8/Lua-CSharp?tab=readme-ov-file#luaobject) for command interpretation which potentially allows to create reusable chunks of code that can be executed during Runtime.

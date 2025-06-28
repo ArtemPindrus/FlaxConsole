@@ -43,6 +43,9 @@ namespace FlaxConsole
 
             Settings = (ConsoleEnvironmentSettings)settingsAsset.Instance;
 
+            if (!Engine.IsEditor
+                && !Settings.ShipConsole) return;
+
             Level.LoadScene(Settings.ConsoleScene);
 
             Console = Level.FindScript<Console>();

@@ -9,6 +9,12 @@ namespace FlaxConsole;
 /// </summary>
 public class ConsoleEnvironmentSettings
 {
+    /// <summary>
+    /// Whether to ship console to the cooked game.
+    /// </summary>
+    public bool ShipConsole;
+
+
     public LayersMask DestroyMask;
     public SceneReference ConsoleScene;
     public int HistoryCapacity;

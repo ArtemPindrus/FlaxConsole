@@ -3,6 +3,7 @@
 	"TypeName": "FlaxConsole.ConsoleEnvironmentSettings",
 	"EngineBuild": 6705,
 	"Data": {
+	"ShipConsole": false,
 	"DestroyMask": {
 		"Mask": 5
 	},

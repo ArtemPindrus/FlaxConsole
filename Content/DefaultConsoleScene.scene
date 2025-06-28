@@ -1,0 +1,74 @@
+{
+	"ID": "0bfb06f94fa0415330f11fb7906c87b4",
+	"TypeName": "FlaxEngine.SceneAsset",
+	"EngineBuild": 6705,
+	"Data": [
+		{
+			"ID": "0bfb06f94fa0415330f11fb7906c87b4",
+			"TypeName": "FlaxEngine.Scene",
+			"LightmapSettings": {
+				"IndirectLightingIntensity": 1.0,
+				"GlobalObjectsScale": 1.0,
+				"ChartsPadding": 3,
+				"AtlasSize": 1024,
+				"BounceCount": 1,
+				"CompressLightmaps": true,
+				"UseGeometryWithNoMaterials": true,
+				"Quality": 10
+			}
+		},
+		{
+			"ID": "119fd4a04eb610dd5308c68fd4a03655",
+			"PrefabID": "d214e5ef4ed75465c572a88410452a2c",
+			"PrefabObjectID": "f68cd6ab4ed428c3b0c213ba914443ce",
+			"ParentID": "0bfb06f94fa0415330f11fb7906c87b4",
+			"Name": "ConsolePrefab",
+			"V": {}
+		},
+		{
+			"ID": "77bbb5ba4d81a53ee6ea9aaebdbebef5",
+			"PrefabID": "d214e5ef4ed75465c572a88410452a2c",
+			"PrefabObjectID": "ba15a2b54ca664ccc222e2b58d2f134b",
+			"ParentID": "119fd4a04eb610dd5308c68fd4a03655",
+			"V": {
+	"GetPreviousEvent": {
+		"Name": "PreviousCommand"
+	},
+	"GetNextEvent": {
+		"Name": "NextCommand"
+	}
+}
+		},
+		{
+			"ID": "b0ce1fa043f23b16c7c879a862bf0ce4",
+			"PrefabID": "d214e5ef4ed75465c572a88410452a2c",
+			"PrefabObjectID": "72eaff454e4b79872258feb8cae490b9",
+			"ParentID": "119fd4a04eb610dd5308c68fd4a03655",
+			"Data": {
+	"ResolutionCurve": {},
+	"DpiCurve": {}
+}
+		},
+		{
+			"ID": "ccfecea144774e79a9b6238331539614",
+			"PrefabID": "d214e5ef4ed75465c572a88410452a2c",
+			"PrefabObjectID": "5904c07c4ddac258aeac76ab4b5fdb5b",
+			"ParentID": "b0ce1fa043f23b16c7c879a862bf0ce4",
+			"Data": {}
+		},
+		{
+			"ID": "b18905a942c31ec6c031a0857e47c48a",
+			"PrefabID": "d214e5ef4ed75465c572a88410452a2c",
+			"PrefabObjectID": "dd1a17154413935f218ec5921c7829aa",
+			"ParentID": "ccfecea144774e79a9b6238331539614",
+			"Data": {}
+		},
+		{
+			"ID": "874b7cb0416340dba4755eaf7e72a5fd",
+			"PrefabID": "d214e5ef4ed75465c572a88410452a2c",
+			"PrefabObjectID": "5d3b73d547ad3e12e2c51fb39a5cdfa3",
+			"ParentID": "ccfecea144774e79a9b6238331539614",
+			"Data": {}
+		}
+	]
+}

@@ -1,0 +1,28 @@
+﻿{
+	"Name": "FlaxConsole",
+	"Version": "1.0",
+	"Company": "ArtemPindrus",
+	"Copyright": "",
+	"GameTarget": "FlaxConsoleTarget",
+	"EditorTarget": "FlaxConsoleEditorTarget",
+	"References": [
+		{
+			"Name": "$(EnginePath)/Flax.flaxproj"
+		}
+	],
+	"DefaultScene": null,
+	"DefaultSceneSpawn": {
+		"Position": {
+			"X": 0.0,
+			"Y": 0.0,
+			"Z": 0.0
+		},
+		"Direction": {
+			"X": 0.0,
+			"Y": 0.0,
+			"Z": 0.0
+		}
+	},
+	"MinEngineVersion": "0.0.6167",
+	"EngineNickname": null
+}

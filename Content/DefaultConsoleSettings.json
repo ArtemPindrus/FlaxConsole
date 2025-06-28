@@ -1,0 +1,12 @@
+{
+	"ID": "81ab704647029d8599ee3698f13af6a0",
+	"TypeName": "FlaxConsole.ConsoleEnvironmentSettings",
+	"EngineBuild": 6705,
+	"Data": {
+	"DestroyMask": {
+		"Mask": 5
+	},
+	"ConsoleScene": "0bfb06f94fa0415330f11fb7906c87b4",
+	"HistoryCapacity": 20
+}
+}

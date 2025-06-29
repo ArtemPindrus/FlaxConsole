@@ -113,7 +113,9 @@ public abstract class Console : Script
         lua.Environment["destroyC"] = new LuaFunction((context, buffer, ct) => {
             Camera mainCamera = Camera.MainCamera;
 
-            if (Physics.RayCast(mainCamera.Position, mainCamera.Transform.Forward, out var hit,
+            var ray = mainCamera.ConvertMouseToRay(Input.MousePosition);
+
+            if (Physics.RayCast(ray.Position, ray.Direction, out var hit,
                 layerMask: settings.DestroyMask,
                 hitTriggers: false)) {
                 if (hit.Collider.Parent != null) {
